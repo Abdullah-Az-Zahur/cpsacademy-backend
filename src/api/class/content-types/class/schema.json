@@ -35,9 +35,9 @@
     },
     "module": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToOne",
       "target": "api::module.module",
-      "mappedBy": "classes"
+      "inversedBy": "classes"
     }
   }
 }

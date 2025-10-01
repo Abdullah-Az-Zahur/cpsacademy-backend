@@ -41,9 +41,9 @@
     },
     "modules": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "oneToMany",
       "target": "api::module.module",
-      "inversedBy": "course"
+      "mappedBy": "course"
     }
   }
 }

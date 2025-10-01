@@ -19,15 +19,15 @@
     },
     "course": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToOne",
       "target": "api::course.course",
-      "mappedBy": "modules"
+      "inversedBy": "modules"
     },
     "classes": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "oneToMany",
       "target": "api::class.class",
-      "inversedBy": "module"
+      "mappedBy": "module"
     }
   }
 }

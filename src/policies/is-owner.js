@@ -1,6 +1,6 @@
-module.exports = (config, { strapi }) => {
+export default (config, { strapi }) => {
   return async (ctx, next) => {
-    const { id } = ctx.params; // expects routes like /api/progresses/:id
+    const { id } = ctx.params;
     const user = ctx.state.user;
 
     if (!user) {
@@ -8,7 +8,7 @@ module.exports = (config, { strapi }) => {
     }
 
     if (!id) {
-      // If no specific id in route, we can't check single ownership; allow to continue if needed
+      // no specific id provided
       return await next();
     }
 
@@ -20,14 +20,12 @@ module.exports = (config, { strapi }) => {
       return ctx.notFound('Progress not found.');
     }
 
-    // progress.user may be an object or id depending on populate
     const ownerId = progress.user?.id ?? progress.user;
 
     if (!ownerId || Number(ownerId) !== Number(user.id)) {
       return ctx.forbidden('You do not have permission to access this resource.');
     }
 
-    // owner — continue
     await next();
   };
 };

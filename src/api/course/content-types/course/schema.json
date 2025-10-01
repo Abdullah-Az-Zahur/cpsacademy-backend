@@ -38,6 +38,12 @@
         "videos",
         "audios"
       ]
+    },
+    "modules": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::module.module",
+      "inversedBy": "course"
     }
   }
 }

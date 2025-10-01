@@ -32,6 +32,12 @@
         "videos",
         "audios"
       ]
+    },
+    "module": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::module.module",
+      "mappedBy": "classes"
     }
   }
 }

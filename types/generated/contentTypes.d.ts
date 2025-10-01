@@ -581,6 +581,7 @@ export interface ApiClassClass extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::class.class'> &
       Schema.Attribute.Private;
+    module: Schema.Attribute.Relation<'oneToMany', 'api::module.module'>;
     publishedAt: Schema.Attribute.DateTime;
     recordAvailable: Schema.Attribute.Boolean;
     resources: Schema.Attribute.Media<
@@ -621,6 +622,7 @@ export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
       'api::course.course'
     > &
       Schema.Attribute.Private;
+    modules: Schema.Attribute.Relation<'manyToOne', 'api::module.module'>;
     publishedAt: Schema.Attribute.DateTime;
     shortDescription: Schema.Attribute.Blocks;
     slug: Schema.Attribute.UID<'title'>;
@@ -674,6 +676,8 @@ export interface ApiModuleModule extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    classes: Schema.Attribute.Relation<'manyToOne', 'api::class.class'>;
+    course: Schema.Attribute.Relation<'oneToMany', 'api::course.course'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

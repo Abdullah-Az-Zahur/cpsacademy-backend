@@ -723,36 +723,6 @@ export interface ApiPostPost extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiProgressProgress extends Struct.CollectionTypeSchema {
-  collectionName: 'progresses';
-  info: {
-    displayName: 'Progress';
-    pluralName: 'progresses';
-    singularName: 'progress';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    certificateIssued: Schema.Attribute.Boolean;
-    completedModules: Schema.Attribute.JSON;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::progress.progress'
-    > &
-      Schema.Attribute.Private;
-    percentage: Schema.Attribute.Integer;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -1272,7 +1242,6 @@ declare module '@strapi/strapi' {
       'api::global.global': ApiGlobalGlobal;
       'api::module.module': ApiModuleModule;
       'api::post.post': ApiPostPost;
-      'api::progress.progress': ApiProgressProgress;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

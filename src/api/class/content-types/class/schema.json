@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "classes",
+  "info": {
+    "singularName": "class",
+    "pluralName": "classes",
+    "displayName": "Class"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "videoUrl": {
+      "type": "string"
+    },
+    "duration": {
+      "type": "integer"
+    },
+    "recordAvailable": {
+      "type": "boolean"
+    },
+    "resources": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

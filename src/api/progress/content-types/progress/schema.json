@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "progresses",
+  "info": {
+    "singularName": "progress",
+    "pluralName": "progresses",
+    "displayName": "Progress"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "completedModules": {
+      "type": "json"
+    },
+    "percentage": {
+      "type": "integer"
+    },
+    "certificateIssued": {
+      "type": "boolean"
+    }
+  }
+}

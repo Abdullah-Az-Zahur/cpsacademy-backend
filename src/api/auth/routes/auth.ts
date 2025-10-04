@@ -5,8 +5,8 @@ module.exports = {
     {
       method: "POST",
       path: "/custom-register",
-      handler: "auth.customRegister", // matches controller file + method
-      config: { auth: false }, // public route
+      handler: "auth.customRegister", 
+      config: { auth: false }, 
     },
     {
       method: "POST",

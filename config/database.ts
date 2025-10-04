@@ -70,23 +70,12 @@ export default ({ env }) => {
 
   const connections = {
     postgres: {
-      connection: env("DATABASE_URL")
-        ? {
-            connectionString: env("DATABASE_URL"),
-            ssl: {
-              rejectUnauthorized: false, // required for Railway SSL
-            },
-          }
-        : {
-            host: env("DATABASE_HOST", "localhost"),
-            port: env.int("DATABASE_PORT", 5432),
-            database: env("DATABASE_NAME", "strapi"),
-            user: env("DATABASE_USERNAME", "strapi"),
-            password: env("DATABASE_PASSWORD", "strapi"),
-            ssl: env.bool("DATABASE_SSL", false)
-              ? { rejectUnauthorized: false }
-              : false,
-          },
+      connection: {
+        connectionString: env("DATABASE_URL"),
+        ssl: {
+          rejectUnauthorized: false, // required for Railway SSL
+        },
+      },
       pool: {
         min: env.int("DATABASE_POOL_MIN", 2),
         max: env.int("DATABASE_POOL_MAX", 10),

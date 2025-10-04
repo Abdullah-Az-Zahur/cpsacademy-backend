@@ -1,20 +1,29 @@
-// import type { Core } from '@strapi/strapi';
-
+// src/index.ts
+// Force the Koa proxy setting so Strapi will trust X-Forwarded-* headers.
+// We avoid importing a Strapi type because some Strapi builds don't export it.
 export default {
-  /**
-   * An asynchronous register function that runs before
-   * your application is initialized.
-   *
-   * This gives you an opportunity to extend code.
-   */
-  register(/* { strapi }: { strapi: Core.Strapi } */) {},
+  register({ strapi }: { strapi: any }) {
+    try {
+      if (strapi && strapi.server && strapi.server.app) {
+        // @ts-ignore - we are intentionally setting this runtime property
+        strapi.server.app.proxy = true;
+        strapi.log?.info?.("Bootstrap: set strapi.server.app.proxy = true");
+      } else {
+        strapi.log?.warn?.("Bootstrap: strapi.server.app not available yet");
+      }
+    } catch (err) {
+      // Log but don't crash the startup
+      if (strapi && strapi.log && typeof strapi.log.error === "function") {
+        strapi.log.error("Bootstrap error forcing proxy:", err);
+      } else {
+        // fallback console log if strapi.log isn't available yet
+        // eslint-disable-next-line no-console
+        console.error("Bootstrap error forcing proxy:", err);
+      }
+    }
+  },
 
-  /**
-   * An asynchronous bootstrap function that runs before
-   * your application gets started.
-   *
-   * This gives you an opportunity to set up your data model,
-   * run jobs, or perform some special logic.
-   */
-  bootstrap(/* { strapi }: { strapi: Core.Strapi } */) {},
+  bootstrap() {
+    // no-op
+  },
 };
